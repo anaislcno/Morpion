@@ -11,6 +11,7 @@ function Square({ value, onSquareClick }) {
 export default function Board() {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
+  const [moves, setMoves] = useState(0);
 
   // Que pasa on the click
 
@@ -27,14 +28,18 @@ export default function Board() {
     }
     setSquares(nextSquares);
     setXIsNext(!xIsNext);
+    setMoves(moves + 1);
   }
 
   // For letting players know if it's finish
 
   const winner = calculateWinner(squares);
   let status;
+
   if (winner) {
     status = "Gagnant: " + winner;
+  } else if (moves === 9) {
+    status = "Match nul!";
   } else {
     status = "Prochain joueur: " + (xIsNext ? "X" : "O");
   }
@@ -43,6 +48,7 @@ export default function Board() {
 
   function handleGameRestart() {
     setSquares(Array(9).fill(null));
+    setMoves(0);
   }
 
   // HTML
@@ -72,7 +78,7 @@ export default function Board() {
             <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
           </div>
           <button className="restart" onClick={handleGameRestart}>
-            Recommencer une partie
+            Recommencer
           </button>
         </div>
       </div>
