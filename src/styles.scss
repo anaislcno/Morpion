@@ -55,6 +55,7 @@ body {
         text-align: center;
         color: rgb(121, 170, 213);
         transition: transform 0.2s ease-out;
+        cursor: pointer;
 
         &:hover {
           background-color: $LightColor;
@@ -80,6 +81,7 @@ body {
         text-transform: uppercase;
         color: $DarkColor;
         transition: transform 0.2s ease-out;
+        cursor: pointer;
 
         &:hover {
           transform: scale(1.05);
